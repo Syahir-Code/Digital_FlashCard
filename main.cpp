@@ -1,7 +1,9 @@
 #include <iostream>  
-#include <string>     
+#include <string>    
 
 using namespace std;
+
+enum Difficulty { HARD = 0, MEDIUM = 1, EASY = 2 };
 
 void print(string str) {
     cout << str << endl;
@@ -11,9 +13,11 @@ class FlashCard {
 private:
     string question;
     string answer;
+    Difficulty difficulty;
+
 
 public:
-    FlashCard() { }  
+    FlashCard() { difficulty = MEDIUM; }  
 
     void setQuestion() {
         cout << "Add a question: ";
@@ -25,8 +29,23 @@ public:
         getline(cin, answer);
     }
 
-    string getQuestion()  { return question; }
-    string getAnswer()  { return answer; }
+    void loadCardDetails(string q, string a, Difficulty d) {
+        question = q;
+        answer = a;
+        difficulty = d;
+    }
+
+    string getQuestion()       { return question; }
+    string getAnswer()         { return answer; }
+    Difficulty getDifficulty() const { return difficulty; }
+
+    void setDifficulty(Difficulty d) { difficulty = d; }
+
+    string getDifficultyLabel() {
+        if (difficulty == HARD)   return "Hard";
+        if (difficulty == MEDIUM) return "Medium";
+        return "Easy";
+    }
 };
 
 

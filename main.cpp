@@ -17,8 +17,9 @@ int main() {
         print("---------------------------------");
         print("1. Add FlashCard");
         print("2. Remove FlashCard");
-        print("3. Edit Flashcards");
-        print("4. Exit");
+        print("3. Review Flashcards");
+        print("4. View Progress");
+        print("5. Exit");
         cout << endl;
 
         cout << "Enter your choice (number): ";
@@ -39,6 +40,10 @@ int main() {
         }
 
         else if (choice == 4) {
+            print ("----------");
+        }
+
+        else if (choice == 5) {
             print("Goodbye!");
             return 0;
         }

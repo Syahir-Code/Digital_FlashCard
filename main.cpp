@@ -1,5 +1,6 @@
 #include <iostream>  
 #include <string>    
+#include <vector>    
 
 using namespace std;
 
@@ -48,8 +49,33 @@ public:
     }
 };
 
+class Deck {
+private:
+    vector<FlashCard> cards; 
+
+public:
+    void addNewCard() {
+        FlashCard newCard;
+        newCard.setQuestion();
+        newCard.setAnswer();
+        cards.push_back(newCard);
+        print("Card added successfully!");
+    }
+
+    vector<FlashCard>& getCards() {
+        return cards;
+    }
+
+    void clearDeck() {
+        cards.clear();
+    }
+
+};
+
 
 int main() {
+    Deck myDeck;
+
     int choice = 0;
 
     do {

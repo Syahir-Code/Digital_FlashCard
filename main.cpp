@@ -7,6 +7,29 @@ void print(string str) {
     cout << str << endl;
 }
 
+class FlashCard {
+private:
+    string question;
+    string answer;
+
+public:
+    FlashCard() { }  
+
+    void setQuestion() {
+        cout << "Add a question: ";
+        getline(cin, question);
+    }
+
+    void setAnswer() {
+        cout << "Add the answer: ";
+        getline(cin, answer);
+    }
+
+    string getQuestion()  { return question; }
+    string getAnswer()  { return answer; }
+};
+
+
 int main() {
     int choice = 0;
 

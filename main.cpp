@@ -186,7 +186,7 @@ public:
 
 int main() {
     Deck myDeck;
-    int choice = 0;
+    char choice;
 
     do {
         // Display menu for flashcard console interface
@@ -208,14 +208,14 @@ int main() {
         cout << endl;
 
         // Adds new flashcard to the deck
-        if (choice == 1) {
+        if (choice == '1') {
             cout << "--- Creating a Card ---" << endl;
             myDeck.addNewCard();
         }
 
         // To enter study session / review session
         // Iterates through every existing flashcards
-        else if (choice == 2) {
+        else if (choice == '2') {
             vector<FlashCard>& cards = myDeck.getCards();
             
             if (cards.empty()) {
@@ -234,12 +234,12 @@ int main() {
         // Displays all questions corresponding to each card
         // Lets the user choose one
         // Removes it from the vector
-        else if (choice == 3) {
+        else if (choice == '3') {
             myDeck.removeCard();
         }
 
         // To view user progress 
-        else if (choice == 4) {
+        else if (choice == '4') {
             vector<FlashCard>& cards = myDeck.getCards();
             
             if (cards.empty()) {
@@ -257,7 +257,7 @@ int main() {
         }
 
         // Prints a message and exit the console
-        else if (choice == 5) {
+        else if (choice == '5') {
             print("Thank you!!!");
             return 0;
         }

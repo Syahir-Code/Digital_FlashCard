@@ -195,8 +195,8 @@ int main() {
         print("      FLASHCARD CONSOLE          ");
         print("---------------------------------");
         print("1. Add FlashCard");
-        print("2. Remove FlashCard");
-        print("3. Review Flashcards");
+        print("2. Review Flashcards");
+        print("3. Remove FlashCard");
         print("4. View Progress");
         print("5. Exit");
         cout << endl;
@@ -213,16 +213,9 @@ int main() {
             myDeck.addNewCard();
         }
 
-        // Displays all questions corresponding to each card
-        // Lets the user choose one
-        // Removes it from the vector
-        else if (choice == 2) {
-            myDeck.removeCard();
-        }
-
         // To enter study session / review session
         // Iterates through every existing flashcards
-        else if (choice == 3) {
+        else if (choice == 2) {
             vector<FlashCard>& cards = myDeck.getCards();
             
             if (cards.empty()) {
@@ -236,6 +229,13 @@ int main() {
                     session.startSession(i + 1, cards.size());
                 }
             }
+        }
+
+        // Displays all questions corresponding to each card
+        // Lets the user choose one
+        // Removes it from the vector
+        else if (choice == 3) {
+            myDeck.removeCard();
         }
 
         // To view user progress 

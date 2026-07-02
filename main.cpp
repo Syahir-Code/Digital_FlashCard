@@ -1,16 +1,21 @@
-#include <iostream>  
-#include <string>    
-#include <vector>    
-#include <algorithm> 
+#include <iostream>  // Default library to run c++ program
+#include <string>    // String functionality
+#include <vector>    // Vector function (dynamic memory allocation)
+#include <algorithm> // Added for std::sort
 
 using namespace std;
 
+// Define difficulty level (for progress report)
 enum Difficulty { HARD = 0, MEDIUM = 1, EASY = 2 };
 
+// Custom function (shortcut) to print with newline
 void print(string str) {
     cout << str << endl;
 }
 
+
+// Stores information of each flashcard
+// Question, answer, difficulty level
 class FlashCard {
 private:
     string question;
@@ -50,6 +55,10 @@ public:
     }
 };
 
+
+// Acts as a deck for collection of flashcards
+// To store multiple flashcards
+// Add and remove flashcard functions obtained from here
 class Deck {
 private:
     vector<FlashCard> cards; 
@@ -103,9 +112,14 @@ public:
     }
 };
 
+
+// To review flashcards in the deck
+// Prompts question, reveals answer
+// Asks and update difficulty level experienced for each card
 class StudySession {
 private:
     FlashCard *card;  
+
 public:
     StudySession(FlashCard *c) { card = c; }
 
@@ -113,7 +127,7 @@ public:
         cout << "Question: " << card->getQuestion() << endl;
         cout << endl;
         cout << "Press ENTER to reveal answer...";
-        cin.ignore(); 
+        cin.ignore();
         cout << "Answer: " << card->getAnswer() << endl;
         cout << endl;
     }
@@ -153,6 +167,7 @@ public:
     }
 };
 
+// Track and displays user progress
 class UserProgress {
 private:
     FlashCard *card;  
@@ -171,10 +186,10 @@ public:
 
 int main() {
     Deck myDeck;
-
     int choice = 0;
 
     do {
+        // Display menu for flashcard console interface
         cout << endl;
         print("---------------------------------");
         print("      FLASHCARD CONSOLE          ");
@@ -186,25 +201,33 @@ int main() {
         print("5. Exit");
         cout << endl;
 
+        // Read user's menu selection
         cout << "Enter your choice (number): ";
         cin >> choice;
         cin.ignore(); 
         cout << endl;
 
+        // Adds new flashcard to the deck
         if (choice == 1) {
             cout << "--- Creating a Card ---" << endl;
             myDeck.addNewCard();
         }
 
+        // Displays all questions corresponding to each card
+        // Lets the user choose one
+        // Removes it from the vector
         else if (choice == 2) {
             myDeck.removeCard();
         }
 
+        // To enter study session / review session
+        // Iterates through every existing flashcards
         else if (choice == 3) {
             vector<FlashCard>& cards = myDeck.getCards();
-             
+            
             if (cards.empty()) {
                 print("The deck is empty! Add some cards first.");
+
             } else {
                 myDeck.sortByDifficulty();
             
@@ -214,31 +237,37 @@ int main() {
                 }
             }
         }
- 
+
+        // To view user progress 
         else if (choice == 4) {
             vector<FlashCard>& cards = myDeck.getCards();
             
             if (cards.empty()) {
                 print("The deck is empty! No progress to show.");
+
             } else {
                 for (size_t i = 0; i < cards.size(); i++) {
                     UserProgress track(&cards[i]);
                     track.progress();
                 }
+   
                 cout << "Press ENTER to return to the menu...";
                 cin.ignore();
             }
         }
 
+        // Prints a message and exit the console
         else if (choice == 5) {
-            print("Goodbye!");
+            print("Thank you!!!");
             return 0;
         }
 
+        // Prints a warning if invalid choice is selected
         else {
             print("Invalid choice. Please select 1-5.");
         }
     
+    // Keeps the program running until user chooses to exit
     } while (true);
 
     return 0;
